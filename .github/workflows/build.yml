@@ -12,12 +12,12 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          # libtinfo5 વગરના પેકેજીસ
           sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
           python3 -m pip install --upgrade pip
-          pip install buildozer cython
+          # Cython નું ચોક્કસ વર્ઝન ઇન્સ્ટોલ કરવું જરૂરી છે
+          pip install "cython<3.0" buildozer 
 
       - name: Build Android APK
         run: |
-          # લાઈસન્સ એક્સેપ્ટ કરવાનો આદેશ અને બિલ્ડ
-          yes | buildozer android debug
+          # લોગ લેવલ ૨ સાથે રન કરો જેથી સાચી એરર દેખાય
+          yes | buildozer -v android debug
