@@ -12,16 +12,14 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          # બધી જ જરૂરી લાઈબ્રેરીઓ એકસાથે
           sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool libtool-bin m4 pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
           python3 -m pip install --upgrade pip
-          pip install "cython<3.0" buildozer 
+          # બિલ્ડોઝર અને સાયથન સાથે પ્લેટફોર્મ ટૂલ્સ પણ ઇન્સ્ટોલ કરો
+          pip install "cython<3.0" buildozer python-for-android
 
-      - name: Clean and Build
+      - name: Build Android APK
         run: |
-          # જો જૂનું કોઈ બિલ્ડ પડ્યું હોય તો તેને સાફ કરવા માટે
-          buildozer android clean
-          # લાઈસન્સ એક્સેપ્ટ કરીને બિલ્ડ શરૂ કરો
+          # સીધું જ બિલ્ડ શરૂ કરો, ક્લીન કરવાની જરૂર નથી જો પહેલી વાર હોય
           yes | buildozer -v android debug
 
       - name: Upload APK
