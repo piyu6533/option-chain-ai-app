@@ -1,17 +1,20 @@
-name: Build APK
+name: Android APK Build
 
 on:
 push:
+branches:
+- main
 
 jobs:
 build:
 runs-on: ubuntu-latest
 
+```
 steps:
+  - name: Checkout repository
+    uses: actions/checkout@v3
 
-  - uses: actions/checkout@v3
-
-  - name: Install packages
+  - name: Install dependencies
     run: |
       sudo apt update
       sudo apt install -y python3-pip git zip unzip openjdk-17-jdk
@@ -20,3 +23,4 @@ steps:
   - name: Build APK
     run: |
       buildozer android debug
+```
