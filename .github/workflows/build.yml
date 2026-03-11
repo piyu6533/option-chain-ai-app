@@ -7,25 +7,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Dependencies
         run: |
           sudo apt update
-          # libtool-bin અને m4 ઉમેરવા ખૂબ જરૂરી છે
+          # libtool-bin અને m4 ફરજિયાત છે
           sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool libtool-bin m4 pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
           python3 -m pip install --upgrade pip
           pip install "cython<3.0" buildozer 
 
-      - name: Fix Libtool
-        run: |
-          sudo libtoolize --force
-          sudo aclocal
-          sudo autoconf
-      
       - name: Build Android APK
         run: |
-          # લાઈસન્સ એક્સેપ્ટ કરીને બિલ્ડ શરૂ કરો
+          # અહીં કોઈ વધારાના લિબટૂલ કમાન્ડની જરૂર નથી
           yes | buildozer -v android debug
 
       - name: Upload APK
