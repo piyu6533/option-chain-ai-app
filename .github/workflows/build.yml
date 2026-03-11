@@ -17,6 +17,12 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install "cython<3.0" buildozer 
 
+      - name: Fix Libtool
+        run: |
+          sudo libtoolize --force
+          sudo aclocal
+          sudo autoconf
+      
       - name: Build Android APK
         run: |
           # લાઈસન્સ એક્સેપ્ટ કરીને બિલ્ડ શરૂ કરો
