@@ -14,3 +14,10 @@ requirements = python3,kivy,requests
 
 orientation = portrait
 fullscreen = 0
+# (વધારે સ્ટેબલ વર્ઝન માટે આ સેટિંગ્સ જરૂરી છે)
+android.api = 33
+android.minapi = 21
+android.sdk = 33
+android.ndk = 25b
+android.accept_sdk_license = True
+android.permissions = INTERNET
