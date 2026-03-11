@@ -7,6 +7,9 @@ package.domain = org.trading
 source.dir = .
 source.include_exts = py,kv
 
+# આ લાઈન ઉમેરો (વર્ઝન સેટ કરવા માટે)
+version = 0.1
+
 requirements = python3,kivy,requests
 
 orientation = portrait
