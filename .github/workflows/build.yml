@@ -1,37 +1,33 @@
-name: Build APK
+name: Build Android APK
+
 on:
-  push:
-    branches: [ main ]
+push:
+branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+build:
+runs-on: ubuntu-latest
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10' # વધારે સ્ટેબલ વર્ઝન
+```
+steps:
+  - uses: actions/checkout@v3
 
-      - name: Install Dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool libtool-bin m4 pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential automake
-          
-          # આ પાથ સેટ કરવાથી 'LT_SYS_SYMBOL_USCORE' એરર દૂર થશે
-          echo "ACLOCAL_PATH=/usr/share/aclocal" >> $GITHUB_ENV
-          
-          python3 -m pip install --upgrade pip
-          pip install "cython<3.0" buildozer python-for-android
-          
-      - name: Build Android APK
-        run: |
-          # સીધું જ બિલ્ડ શરૂ કરો, ક્લીન કરવાની જરૂર નથી જો પહેલી વાર હોય
-          yes | buildozer -v android debug
+  - name: Install system packages
+    run: |
+      sudo apt update
+      sudo apt install -y \
+      python3-pip git zip unzip openjdk-17-jdk \
+      autoconf automake libtool pkg-config \
+      build-essential \
+      zlib1g-dev libncurses5-dev libncursesw5-dev \
+      cmake libffi-dev libssl-dev
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: TradingApp-APK
-          path: bin/*.apk
+  - name: Install Python tools
+    run: |
+      pip install --upgrade pip
+      pip install buildozer cython
+
+  - name: Build APK
+    run: |
+      buildozer android debug
+```
