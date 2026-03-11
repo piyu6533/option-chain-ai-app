@@ -14,10 +14,16 @@ jobs:
           sudo apt update
           sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
           python3 -m pip install --upgrade pip
-          # Cython નું ચોક્કસ વર્ઝન ઇન્સ્ટોલ કરવું જરૂરી છે
+          # Cython નું સ્ટેબલ વર્ઝન વાપરવું જરૂરી છે
           pip install "cython<3.0" buildozer 
 
       - name: Build Android APK
         run: |
-          # લોગ લેવલ ૨ સાથે રન કરો જેથી સાચી એરર દેખાય
+          # લાઈસન્સ એક્સેપ્ટ કરીને બિલ્ડ શરૂ કરો
           yes | buildozer -v android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: package
+          path: bin/*.apk
