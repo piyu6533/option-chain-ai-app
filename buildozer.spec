@@ -7,7 +7,7 @@ source.include_exts = py,kv
 version = 0.1
 
 # Android પર HTTPS ડેટા માટે openssl અને certifi જરૂરી છે
-requirements = python3,kivy==2.2.1,requests,openssl,certifi,hostpython3
+requirements = python3,kivy,requests,openssl,certifi,hostpython3
 
 orientation = portrait
 fullscreen = 0
@@ -18,7 +18,7 @@ android.minapi = 21
 android.ndk = 25b
 android.accept_sdk_license = True
 android.permissions = INTERNET
-android.archs = armeabi-v7a, arm64-v8a
+android.archs = arm64-v8a
 
 # એરર શોધવા માટે લોગ લેવલ 2
 log_level = 2
