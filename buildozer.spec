@@ -7,7 +7,7 @@ source.include_exts = py,kv
 version = 0.1
 
 # Android પર HTTPS ડેટા માટે openssl અને certifi જરૂરી છે
-requirements = python3,kivy,requests,openssl,certifi,hostpython3
+requirements = python3,kivy,requests,certifi,hostpython3
 
 orientation = portrait
 fullscreen = 0
