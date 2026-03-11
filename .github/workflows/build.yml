@@ -30,4 +30,7 @@ jobs:
 
       - name: Build Android APK
         run: |
-          yes | buildozer android debug
+          # લાઈસન્સ અલગથી એક્સેપ્ટ કરો
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          # બિલ્ડોઝરને સીધું રન કરો
+          buildozer android debug
