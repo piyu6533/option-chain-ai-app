@@ -17,11 +17,10 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          # બધી જ જરૂરી સિસ્ટમ લાઈબ્રેરીઓ
-          sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool libtool-bin m4 pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential
+          sudo apt install -y git zip unzip openjdk-17-jdk autoconf libtool libtool-bin m4 pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev build-essential automake
           
-          # આ લાઈન ખાસ ઉમેરવી - લિબટૂલને બરાબર સેટ કરવા માટે
-          sudo apt install -y automake
+          # આ પાથ સેટ કરવાથી 'LT_SYS_SYMBOL_USCORE' એરર દૂર થશે
+          echo "ACLOCAL_PATH=/usr/share/aclocal" >> $GITHUB_ENV
           
           python3 -m pip install --upgrade pip
           pip install "cython<3.0" buildozer python-for-android
