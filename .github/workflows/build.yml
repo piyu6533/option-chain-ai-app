@@ -15,16 +15,22 @@ jobs:
           sudo apt update
           sudo apt install -y \
           python3-pip git zip unzip openjdk-17-jdk \
-          autoconf automake libtool pkg-config \
-          build-essential \
+          autoconf automake libtool libltdl-dev m4 \
+          pkg-config build-essential \
           zlib1g-dev libncurses5-dev libncursesw5-dev \
           cmake libffi-dev libssl-dev
-
-      - name: Install Python packages
+          
+      - name: Fix libtool macros
+        run: |
+          libtoolize --force
+          autoreconf -fi
+    
+      - name: Install Python tools
         run: |
           pip install --upgrade pip
           pip install buildozer cython
-
+    
       - name: Build APK
         run: |
           buildozer android debug
+ 
