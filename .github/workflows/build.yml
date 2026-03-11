@@ -19,11 +19,6 @@ jobs:
           pkg-config build-essential \
           zlib1g-dev libncurses5-dev libncursesw5-dev \
           cmake libffi-dev libssl-dev
-          
-      - name: Fix libtool macros
-        run: |
-          libtoolize --force
-          autoreconf -fi
     
       - name: Install Python tools
         run: |
