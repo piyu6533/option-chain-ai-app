@@ -19,9 +19,11 @@ jobs:
 
       - name: Install Buildozer and Dependencies
         run: |
-          sudo apt update
-          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev cmake libffi-dev libssl-dev
-          # મેં ઉપરની લાઈનમાંથી libtinfo5 કાઢી નાખ્યું છે જે એરર આપતું હતું.
+          pip install --upgrade
+          pip install buildozer cython
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo6 cmake libffi-dev libssl-dev
+
+      - name: Accept Android Licenses
         run: |
           # SDK Manager દ્વારા લાઈસન્સ એક્સેપ્ટ કરવા માટે
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
