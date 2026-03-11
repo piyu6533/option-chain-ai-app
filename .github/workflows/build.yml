@@ -1,28 +1,26 @@
 name: Build APK
 
 on:
-push:
-branches:
-- main
+  push:
+    branches:
+      - main
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
-```
-steps:
-  - uses: actions/checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
-  - name: Install Python
-    run: |
-      sudo apt update
-      sudo apt install -y python3-pip
+      - name: Install Python
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip
 
-  - name: Install Buildozer
-    run: |
-      pip install buildozer cython
+      - name: Install Buildozer
+        run: |
+          pip install buildozer cython
 
-  - name: Build Android APK
-    run: |
-      buildozer android debug
-```
+      - name: Build Android APK
+        run: |
+          buildozer android debug
