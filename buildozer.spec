@@ -1,7 +1,7 @@
 [app]
 
-title = Option Chain AI
-package.name = optionchain
+title = Pro Trading Terminal
+package.name = tradingterminal
 package.domain = org.trading
 
 source.dir = .
